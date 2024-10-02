@@ -34,6 +34,10 @@ public class InicioControlador implements Initializable {
     private TextField txtEmail;
     @FXML
     private ComboBox<String> txtCategoria;
+    @FXML
+    private ComboBox<String> txtCategoriaBuscar;
+    @FXML
+    private TextField txtBuscarValor;
 
     @FXML
     private TableView<Contacto> tablaContactos;
@@ -128,10 +132,65 @@ public class InicioControlador implements Initializable {
         }
     }
 
-    @FXML
-    public void mostrarContactos(ActionEvent e) {
-        contactoPrincipal.mostrarContactos(txtNumeroTelefono.getText());
+//    @FXML
+//    public void mostrarContactos(ActionEvent e) {
+//        contactoPrincipal.mostrarContactos(txtNumeroTelefono.getText());
+//    }
+
+//    @FXML
+//    public void mostrarContactos(ActionEvent e){
+//        try{
+//            String categoriaBuscar = txtCategoriaBuscar.getValue();
+//            String dato = null;
+//            for (String dato : listarContactos){}
+//
+//            if (categoriaBuscar.equals("NumeroTelefono")){
+//                for(contactoPrincipal numeroTelefono : listarContactos){
+//                    contactoPrincipal.mostrarContactos(txtNumeroTelefono.getText().equals());
+//                    mostrarAlerta("Contacto encontrado", AlertType.INFORMATION);
+//                }
+//                else if (categoriaBuscar.equals("Email")){
+//                    contactoPrincipal.mostrarContactos(txtEmail.getText());
+//                    mostrarAlerta("Contacto encontrado", AlertType.INFORMATION);
+//                }
+//                else{
+//                    mostrarAlerta("Seleccione una categoria", AlertType.WARNING);
+//                }
+//            }
+//        }catch(Exception ex){
+//            mostrarAlerta("Error: " + ex.getMessage(), AlertType.ERROR);
+//        }
+//    }
+@FXML
+public void buscarContacto(ActionEvent e) {
+    try {
+        String categoriaBuscar = txtCategoriaBuscar.getValue();
+        String valorBuscar = txtBuscarValor.getText();
+
+        if (categoriaBuscar == null || valorBuscar.isEmpty()) {
+            mostrarAlerta("Seleccione una categoría y complete el valor de búsqueda", Alert.AlertType.WARNING);
+            return;
+        }
+
+        Contacto contactoEncontrado = null;
+        if (categoriaBuscar.equals("NumeroTelefono")) {
+            contactoEncontrado = contactoPrincipal.buscarPorTelefono(valorBuscar);
+        } else if (categoriaBuscar.equals("Email")) {
+            contactoEncontrado = contactoPrincipal.buscarPorEmail(valorBuscar);
+        }
+
+        if (contactoEncontrado != null) {
+            mostrarAlerta("Contacto encontrado:\n" + contactoEncontrado.getNombre() + " " + contactoEncontrado.getApellido(), Alert.AlertType.INFORMATION);
+        } else {
+            mostrarAlerta("No se ha encontrado ningún contacto asociado a este " + categoriaBuscar.toLowerCase() + ": " + valorBuscar, Alert.AlertType.INFORMATION);
+        }
+    } catch (Exception ex) {
+        mostrarAlerta("Error: " + ex.getMessage(), Alert.AlertType.ERROR);
     }
+}
+
+
+
 
     @FXML
     public void eliminarContacto(ActionEvent e) {
@@ -155,6 +214,7 @@ public class InicioControlador implements Initializable {
         txtFechaNacimiento.setValue(null);
         txtEmail.clear();
         txtCategoria.setValue(null);
+        txtCategoriaBuscar.setValue(null);
     }
 
     private void mostrarAlerta(String mensaje, AlertType tipo) {
@@ -177,6 +237,9 @@ public class InicioControlador implements Initializable {
 
         // Agregar categorías al ComboBox
         txtCategoria.setItems(FXCollections.observableArrayList(contactoPrincipal.listarCategorias()));
+//        txtCategoriaBuscar.setItems(FXCollections.observableArrayList(contactoPrincipal.listarCategoriaBuscar()));
+
+        txtCategoriaBuscar.setItems(FXCollections.observableArrayList("NumeroTelefono", "Email"));
 
         // Agregar contactos de ejemplo
         agregarContactosPorDefecto();

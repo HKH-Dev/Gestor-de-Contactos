@@ -23,7 +23,6 @@ public class ContactoPrincipal {
         if (nombre.isEmpty() || apellido.isEmpty() || numeroTelefono.isEmpty() || fechaNacimiento == null || email.isEmpty() || categoria.isEmpty()) {
             throw new IllegalArgumentException("Todos los campos son obligatorios");
         }
-
         Contacto contacto;
         if (categoria.equals("Profesional")) {
             // Valores de ejemplo para profesion y lugarTrabajo
@@ -110,5 +109,29 @@ public class ContactoPrincipal {
         categoriasElegir.add("Personal");
         categoriasElegir.add("Profesional");
         return categoriasElegir;
+    }
+
+    public ArrayList<String>listarCategoriaBuscar(){
+        ArrayList<String> categoriasElegitBuscar = new ArrayList<>();
+        categoriasElegitBuscar.add("Numero de Telefono");
+        categoriasElegitBuscar.add("Email");
+        return categoriasElegitBuscar;
+    }
+
+    public Contacto buscarPorTelefono(String numeroTelefono) {
+        for (Contacto contacto : listacontactos) {
+            if (contacto.getNumeroTelefono().equals(numeroTelefono)) {
+                return contacto;
+            }
+        }
+        return null;
+    }
+    public Contacto buscarPorEmail(String email) {
+        for (Contacto contacto : listacontactos) {
+            if (contacto.getEmail().equals(email)) {
+                return contacto;
+            }
+        }
+        return null;
     }
 }

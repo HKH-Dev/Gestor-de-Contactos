@@ -11,27 +11,42 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="664.0" prefWidth="1094.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.controller.InicioControlador">
+<AnchorPane prefHeight="939.0" prefWidth="1094.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.controller.InicioControlador">
 
-    <Label layoutX="64.0" layoutY="130.0" text="Nombre:" />
-    <TextField fx:id="txtNombre" layoutX="216.0" layoutY="130.0" minWidth="200.0" />
+    <Label layoutX="34.0" layoutY="130.0" text="Nombre:" />
+    <TextField fx:id="txtNombre" layoutX="175.0" layoutY="126.0" minWidth="200.0" />
 
-    <Label layoutX="64.0" layoutY="180.0" text="Apellido:" />
-    <TextField fx:id="txtApellido" layoutX="216.0" layoutY="180.0" minWidth="200.0" />
+    <Label layoutX="34.0" layoutY="184.0" text="Apellido:" />
+    <TextField fx:id="txtApellido" layoutX="176.0" layoutY="179.0" minWidth="200.0" />
 
-    <Label layoutX="64.0" layoutY="230.0" text="Número de Teléfono:" />
-    <TextField fx:id="txtNumeroTelefono" layoutX="216.0" layoutY="230.0" minWidth="200.0" />
+    <Label layoutX="34.0" layoutY="236.0" text="Número de Teléfono:" />
+    <TextField fx:id="txtNumeroTelefono" layoutX="176.0" layoutY="231.0" minWidth="200.0" />
 
-    <Label layoutX="64.0" layoutY="280.0" text="Fecha Cumpleaños:" />
-    <DatePicker fx:id="txtFechaNacimiento" layoutX="216.0" layoutY="280.0" minWidth="200.0" />
+    <Label layoutX="34.0" layoutY="287.0" text="Fecha Cumpleaños:" />
+    <DatePicker fx:id="txtFechaNacimiento" layoutX="176.0" layoutY="282.0" minWidth="200.0" />
 
-    <Label layoutX="64.0" layoutY="330.0" text="Correo Electrónico:" />
-    <TextField fx:id="txtEmail" layoutX="216.0" layoutY="330.0" minWidth="200.0" />
+    <Label layoutX="34.0" layoutY="337.0" text="Correo Electrónico:" />
+    <TextField fx:id="txtEmail" layoutX="176.0" layoutY="332.0" minWidth="200.0" />
 
-    <Label layoutX="64.0" layoutY="380.0" text="Categoría:" />
-    <ComboBox fx:id="txtCategoria" layoutX="216.0" layoutY="380.0" minWidth="200.0" prefHeight="27.0" prefWidth="200.0" />
+    <Label layoutX="34.0" layoutY="393.0" text="Categoría:" />
+    <ComboBox fx:id="txtCategoria" layoutX="176.0" layoutY="388.0" minWidth="200.0" prefHeight="27.0" prefWidth="200.0" />
 
-    <TableView fx:id="tablaContactos" layoutX="454.0" layoutY="46.0" prefHeight="459.0" prefWidth="625.0">
+<!--    <Label layoutX="36.0" layoutY="520.0" text="Buscar por Categoría :" />-->
+<!--    <ComboBox fx:id="txtCategoriaBuscar" layoutX="180.0" layoutY="515.0" minWidth="200.0" prefHeight="27.0" prefWidth="200.0" />-->
+<!--    <TextField fx:id="txtEmptyFill" layoutX="397.0" layoutY="516.0" minWidth="200.0" />-->
+
+
+    <Label layoutX="36.0" layoutY="520.0" text="Buscar por:" />
+    <ComboBox fx:id="txtCategoriaBuscar" layoutX="180.0" layoutY="515.0" minWidth="200.0" prefHeight="27.0" prefWidth="200.0" />
+    <TextField fx:id="txtBuscarValor" layoutX="397.0" layoutY="516.0" minWidth="200.0" />
+
+<!--    <Button fx:id="btnBuscarContacto" layoutX="152.0" layoutY="655.0" onAction="#buscarContacto" prefHeight="37.0" prefWidth="147.0" style="-fx-background-color: #2e2e2e;" text="Buscar Contacto" textFill="#ffffff" />-->
+
+
+
+
+
+    <TableView fx:id="tablaContactos" layoutX="434.0" layoutY="35.0" prefHeight="459.0" prefWidth="631.0">
         <columns>
             <TableColumn fx:id="colNombre" text="Nombre" />
             <TableColumn fx:id="colApellido" text="Apellido" />
@@ -42,19 +57,14 @@
         </columns>
     </TableView>
 
-<!--    <ImageView fitHeight="87.0" fitWidth="143.0" layoutX="64.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">-->
-<!--        <image>-->
-<!--            <Image url="@people-head-contact-icon-0e45e6 (1).png" />-->
-<!--        </image>-->
-<!--    </ImageView>-->
 
-    <Button fx:id="btnBuscarContacto" layoutX="134.0" layoutY="554.0" onAction="#mostrarContactos" prefHeight="37.0" prefWidth="157.0" text="Buscar Contacto" />
+    <Button fx:id="btnBuscarContacto" layoutX="152.0" layoutY="655.0" onAction="#buscarContacto" prefHeight="37.0" prefWidth="147.0" style="-fx-background-color: #252525;" text="Buscar Contacto" textFill="#ffffff"/>
 
-    <Button fx:id="EliminarContacto" layoutX="712.0" layoutY="554.0" onAction="#eliminarContacto" prefHeight="37.0" prefWidth="157.0" style="-fx-background-color: #f54a45;" text="Eliminar Contacto" textFill="#ffffff" />
+    <Button fx:id="EliminarContacto" layoutX="750.0" layoutY="655.0" onAction="#eliminarContacto" prefHeight="37.0" prefWidth="157.0" style="-fx-background-color: #f54a45;" text="Eliminar Contacto" textFill="#ffffff" />
 
-    <Button fx:id="btnCrearContacto" layoutX="448.0" layoutY="554.0" onAction="#crearContacto" prefHeight="37.0" prefWidth="157.0" text="Crear Contacto" />
+    <Button fx:id="btnCrearContacto" layoutX="431.0" layoutY="655.0" onAction="#crearContacto" prefHeight="37.0" prefWidth="157.0" style="-fx-background-color: #3e9afa;" text="Crear Contacto" textFill="#ffffff" />
 
-    <ImageView fitHeight="106.0" fitWidth="104.0" layoutX="141.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView fitHeight="119.0" fitWidth="111.0" layoutX="152.0" pickOnBounds="true" preserveRatio="true">
         <image>
             <Image url="@people-head-contact-icon-0e45e6 (1).png" />
         </image>
